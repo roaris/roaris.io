@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { client } from '../libs/client';
+import { Category } from '../styles/Category';
 
 export default function Home({ blog }) {
   return (
@@ -10,6 +11,13 @@ export default function Home({ blog }) {
             <Link href={`/blog/${blog.id}`}>
               <a>{blog.title}</a>
             </Link>
+            {blog.category && (
+              <Category>
+                <Link href={`/category/${blog.category.id}`}>
+                  {blog.category.name}
+                </Link>
+              </Category>
+            )}
           </li>
         ))}
       </ul>
