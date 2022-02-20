@@ -1,12 +1,20 @@
+import Link from 'next/link';
 import { client } from '../../libs/client';
 import styles from '../../styles/Home.module.scss';
+import { Category } from '../../styles/Category';
 
 export default function BlogId({ blog }) {
   return (
     <main className={styles.main}>
       <h1 className={styles.title}>{blog.title}</h1>
       <p className={styles.publishedAt}>{blog.publishedAt}</p>
-      <p className="category">{blog.category && `${blog.category.name}`}</p>
+      {blog.category && (
+        <Category>
+          <Link href={`/category/${blog.category.id}`}>
+            {blog.category.name}
+          </Link>
+        </Category>
+      )}
       <div
         dangerouslySetInnerHTML={{
           __html: `${blog.body}`,
