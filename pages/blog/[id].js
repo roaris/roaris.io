@@ -9,7 +9,11 @@ export default function BlogId({ blog }) {
       <h1 className={styles.title}>{blog.title}</h1>
       <p className={styles.publishedAt}>{blog.publishedAt}</p>
       {blog.category.map((category) => (
-        <Category key={category.id}>
+        <Category
+          key={category.id}
+          color={category.color}
+          backgroundColor={category.backgroundColor}
+        >
           <Link href={`/category/${category.id}`}>{category.name}</Link>
         </Category>
       ))}
