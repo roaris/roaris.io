@@ -11,11 +11,11 @@ export default function Home({ blog }) {
             <Link href={`/blog/${blog.id}`}>
               <a>{blog.title}</a>
             </Link>
-            <Category>
-              <Link href={`/category/${blog.category.id}`}>
-                {blog.category.name}
-              </Link>
-            </Category>
+            {blog.category.map((category) => (
+              <Category key={category.id}>
+                <Link href={`/category/${category.id}`}>{category.name}</Link>
+              </Category>
+            ))}
           </li>
         ))}
       </ul>
@@ -33,7 +33,7 @@ export const getStaticProps = async (context) => {
   const categoryId = context.params.id;
   const data = await client.get({
     endpoint: 'blog',
-    queries: { filters: `category[equals]${categoryId}` },
+    queries: { filters: `category[contains]${categoryId}` },
   });
   return {
     props: {

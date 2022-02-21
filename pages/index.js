@@ -11,13 +11,11 @@ export default function Home({ blog }) {
             <Link href={`/blog/${blog.id}`}>
               <a>{blog.title}</a>
             </Link>
-            {blog.category && (
-              <Category>
-                <Link href={`/category/${blog.category.id}`}>
-                  {blog.category.name}
-                </Link>
+            {blog.category.map((category) => (
+              <Category key={category.id}>
+                <Link href={`/category/${category.id}`}>{category.name}</Link>
               </Category>
-            )}
+            ))}
           </li>
         ))}
       </ul>
