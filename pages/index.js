@@ -1,5 +1,6 @@
 import { client } from '../libs/client';
 import { Blog } from '../components/Blog';
+import { Title } from '../components/Title';
 import styled from 'styled-components';
 
 export default function Home({ blog }) {
@@ -16,6 +17,7 @@ export default function Home({ blog }) {
   return (
     <Container>
       <Main>
+        <Title />
         {blog.map((blog) => (
           <Blog blog={blog} key={blog.id} />
         ))}
