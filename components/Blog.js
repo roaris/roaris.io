@@ -4,7 +4,8 @@ import styled from 'styled-components';
 
 export const Blog = ({ blog }) => {
   const Wrapper = styled.div`
-    border: 1px solid;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
     border-radius: 0.5em;
     margin: 30px 0;
     padding: 10px;
