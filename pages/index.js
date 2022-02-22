@@ -18,6 +18,7 @@ export default function Home({ blog }) {
     <Container>
       <Main>
         <Title />
+        <h2>すべての記事</h2>
         {blog.map((blog) => (
           <Blog blog={blog} key={blog.id} />
         ))}

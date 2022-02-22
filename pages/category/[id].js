@@ -3,7 +3,7 @@ import { Blog } from '../../components/Blog';
 import { Title } from '../../components/Title';
 import styled from 'styled-components';
 
-export default function Home({ blog }) {
+export default function Home({ blog, categoryName }) {
   const Container = styled.div`
     margin: 0 auto;
     max-width: 700px;
@@ -17,6 +17,7 @@ export default function Home({ blog }) {
   return (
     <Container>
       <Title />
+      <h2>{categoryName}の記事</h2>
       <Main>
         {blog.map((blog) => (
           <Blog blog={blog} key={blog.id} />
@@ -38,9 +39,14 @@ export const getStaticProps = async (context) => {
     endpoint: 'blog',
     queries: { filters: `category[contains]${categoryId}` },
   });
+  const category = await client.get({
+    endpoint: 'category',
+    contentId: categoryId,
+  });
   return {
     props: {
       blog: data.contents,
+      categoryName: category.name,
     },
   };
 };

@@ -7,7 +7,7 @@ export const Blog = ({ blog }) => {
     background-color: #ffffff;
     border: 1px solid #ffffff;
     border-radius: 0.5em;
-    margin: 30px 0;
+    margin-bottom: 30px;
     padding: 10px;
   `;
 
