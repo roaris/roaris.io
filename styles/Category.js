@@ -6,4 +6,5 @@ export const Category = styled.span`
   background-color: ${(props) => props.backgroundColor};
   border: 1px solid ${(props) => props.backgroundColor};
   border-radius: 2em;
+  margin-right: 5px;
 `;

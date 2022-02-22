@@ -1,29 +1,26 @@
-import Link from 'next/link';
 import { client } from '../libs/client';
-import { Category } from '../styles/Category';
+import { Blog } from '../components/Blog';
+import styled from 'styled-components';
 
 export default function Home({ blog }) {
+  const Container = styled.div`
+    margin: 0 auto;
+    max-width: 700px;
+    padding: 20px;
+  `;
+
+  const Main = styled.div`
+    width: 100%;
+  `;
+
   return (
-    <div>
-      <ul>
+    <Container>
+      <Main>
         {blog.map((blog) => (
-          <li key={blog.id}>
-            <Link href={`/blog/${blog.id}`}>
-              <a>{blog.title}</a>
-            </Link>
-            {blog.category.map((category) => (
-              <Category
-                key={category.id}
-                color={category.color}
-                backgroundColor={category.backgroundColor}
-              >
-                <Link href={`/category/${category.id}`}>{category.name}</Link>
-              </Category>
-            ))}
-          </li>
+          <Blog blog={blog} key={blog.id} />
         ))}
-      </ul>
-    </div>
+      </Main>
+    </Container>
   );
 }
 
