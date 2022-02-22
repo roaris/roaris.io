@@ -1,29 +1,60 @@
 import Link from 'next/link';
 import { client } from '../../libs/client';
-import styles from '../../styles/Home.module.scss';
 import { Category } from '../../styles/Category';
+import { Title } from '../../components/Title';
+import styled from 'styled-components';
 
 export default function BlogId({ blog }) {
+  const Container = styled.div`
+    margin: 0 auto;
+    max-width: 700px;
+    padding: 20px;
+  `;
+
+  const Main = styled.div`
+    width: 100%;
+  `;
+
+  const Wrapper = styled.div`
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 0.5em;
+    margin-top: 20px;
+    padding: 10px;
+  `;
+
+  const H1 = styled.h1`
+    margin-top: 0px;
+  `;
+
+  const day = blog.createdAt.split('T')[0];
+  const time = blog.createdAt.split('T')[1].slice(0, 5);
+
   return (
-    <main className={styles.main}>
-      <h1 className={styles.title}>{blog.title}</h1>
-      <p className={styles.publishedAt}>{blog.publishedAt}</p>
-      {blog.category.map((category) => (
-        <Category
-          key={category.id}
-          color={category.color}
-          backgroundColor={category.backgroundColor}
-        >
-          <Link href={`/category/${category.id}`}>{category.name}</Link>
-        </Category>
-      ))}
-      <div
-        dangerouslySetInnerHTML={{
-          __html: `${blog.body}`,
-        }}
-        className={styles.post}
-      />
-    </main>
+    <Container>
+      <Title />
+      <Main>
+        <Wrapper>
+          {day} {time}
+          <H1>{blog.title}</H1>
+          {blog.category.map((category) => (
+            <Category
+              key={category.id}
+              color={category.color}
+              backgroundColor={category.backgroundColor}
+            >
+              <Link href={`/category/${category.id}`}>{category.name}</Link>
+            </Category>
+          ))}
+          <div
+            style={{ overflowWrap: 'break-word' }}
+            dangerouslySetInnerHTML={{
+              __html: `${blog.body}`,
+            }}
+          />
+        </Wrapper>
+      </Main>
+    </Container>
   );
 }
 
