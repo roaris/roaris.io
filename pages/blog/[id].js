@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
 import 'highlight.js/styles/github-dark.css';
+import { TwitterIcon, TwitterShareButton } from 'react-share';
 
 export default function BlogId({ blog, highlightedBody }) {
   const Container = styled.div`
@@ -28,6 +29,10 @@ export default function BlogId({ blog, highlightedBody }) {
 
   const H1 = styled.h1`
     margin-top: 0px;
+  `;
+
+  const Share = styled.div`
+    text-align: right;
   `;
 
   const day = blog.createdAt.split('T')[0];
@@ -55,6 +60,14 @@ export default function BlogId({ blog, highlightedBody }) {
               __html: `${highlightedBody}`,
             }}
           />
+          <Share>
+            <TwitterShareButton
+              title={blog.title}
+              url={`https://roaris-io.vercel.app/blog/${blog.id}`}
+            >
+              <TwitterIcon size={35} round={true} />
+            </TwitterShareButton>
+          </Share>
         </Wrapper>
       </Main>
     </Container>
