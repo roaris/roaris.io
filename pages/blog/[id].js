@@ -3,8 +3,11 @@ import { client } from '../../libs/client';
 import { Category } from '../../styles/Category';
 import { Title } from '../../components/Title';
 import styled from 'styled-components';
+import cheerio from 'cheerio';
+import hljs from 'highlight.js';
+import 'highlight.js/styles/github-dark.css';
 
-export default function BlogId({ blog }) {
+export default function BlogId({ blog, highlightedBody }) {
   const Container = styled.div`
     margin: 0 auto;
     max-width: 700px;
@@ -49,7 +52,7 @@ export default function BlogId({ blog }) {
           <div
             style={{ overflowWrap: 'break-word' }}
             dangerouslySetInnerHTML={{
-              __html: `${blog.body}`,
+              __html: `${highlightedBody}`,
             }}
           />
         </Wrapper>
@@ -67,9 +70,25 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const id = context.params.id;
   const data = await client.get({ endpoint: 'blog', contentId: id });
+
+  // シンタックスハイライト
+  const $ = cheerio.load(data.body);
+  $('code', 'p').css('background-color', '#fff');
+  $('code', 'p').css('border', '1px solid #ddd');
+  $('code', 'p').css('border-radius', '3px');
+  $('code', 'p').css('color', '#ff357f');
+  $('code', 'p').css('margin', '0 2px');
+  $('code', 'p').css('padding', '2px 4px');
+  $('code', 'pre').each((_, elm) => {
+    const result = hljs.highlightAuto($(elm).text());
+    $(elm).html(result.value);
+    $(elm).addClass('hljs');
+  });
+
   return {
     props: {
       blog: data,
+      highlightedBody: $.html(),
     },
   };
 };
