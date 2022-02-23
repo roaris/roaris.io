@@ -1,6 +1,12 @@
 import Head from 'next/head';
 
-export const HeadTemplate = ({ pageTitle, pageUrl, imgUrl }) => {
+export const HeadTemplate = ({
+  pageTitle,
+  pageUrl,
+  imgUrl,
+  type,
+  twitterCard,
+}) => {
   return (
     <Head>
       <title>{pageTitle}</title>
@@ -10,8 +16,8 @@ export const HeadTemplate = ({ pageTitle, pageUrl, imgUrl }) => {
       <meta property="og:title" content={pageTitle} />
       <meta property="og:url" content={pageUrl} />
       <meta property="og:image" content={imgUrl} />
-      <meta property="og:type" content="article" />
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta property="og:type" content={type} />
+      <meta name="twitter:card" content={twitterCard} />
     </Head>
   );
 };

@@ -48,6 +48,8 @@ export default function BlogId({ blog, highlightedBody }) {
         pageTitle={`${blog.title} | roaris.io`}
         pageUrl={`https://roaris-io.vercel.app/blog/${blog.id}`}
         imgUrl={ogpImageUrl}
+        type="article"
+        twitterCard="summary_large_image"
       />
       <Container>
         <Title />

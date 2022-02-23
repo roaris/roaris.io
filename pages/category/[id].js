@@ -1,9 +1,10 @@
 import { client } from '../../libs/client';
 import { Blog } from '../../components/Blog';
 import { Title } from '../../components/Title';
+import { HeadTemplate } from '../../components/HeadTemplate';
 import styled from 'styled-components';
 
-export default function Home({ blog, categoryName }) {
+export default function Home({ blog, category, imgUrl }) {
   const Container = styled.div`
     margin: 0 auto;
     max-width: 700px;
@@ -15,15 +16,24 @@ export default function Home({ blog, categoryName }) {
   `;
 
   return (
-    <Container>
-      <Title />
-      <h2>{categoryName}の記事</h2>
-      <Main>
-        {blog.map((blog) => (
-          <Blog blog={blog} key={blog.id} />
-        ))}
-      </Main>
-    </Container>
+    <>
+      <HeadTemplate
+        pageTitle={`${category.name}の記事 | roaris.io`}
+        pageUrl={`https://roaris-io.vercel.app/category/${category.id}`}
+        imgUrl={imgUrl}
+        type="website"
+        twitterCard="summary"
+      />
+      <Container>
+        <Title />
+        <h2>{category.name}の記事</h2>
+        <Main>
+          {blog.map((blog) => (
+            <Blog blog={blog} key={blog.id} />
+          ))}
+        </Main>
+      </Container>
+    </>
   );
 }
 
@@ -43,10 +53,12 @@ export const getStaticProps = async (context) => {
     endpoint: 'category',
     contentId: categoryId,
   });
+  const ogp = await client.get({ endpoint: 'ogp' });
   return {
     props: {
       blog: data.contents,
-      categoryName: category.name,
+      category: category,
+      imgUrl: ogp.image.url,
     },
   };
 };
