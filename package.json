@@ -12,6 +12,7 @@
     "@emotion/styled": "^11.8.1",
     "@mui/icons-material": "^5.4.2",
     "babel-plugin-styled-components": "^2.0.3",
+    "base64url": "^3.0.1",
     "cheerio": "^1.0.0-rc.10",
     "highlight.js": "^11.4.0",
     "microcms-js-sdk": "^2.0.0",
