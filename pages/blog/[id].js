@@ -1,7 +1,9 @@
 import Link from 'next/link';
 import { client } from '../../libs/client';
+import { createOgpImage } from '../../libs/ogp';
 import { Category } from '../../styles/Category';
 import { Title } from '../../components/Title';
+import { HeadTemplate } from '../../components/HeadTemplate';
 import styled from 'styled-components';
 import cheerio from 'cheerio';
 import hljs from 'highlight.js';
@@ -38,39 +40,48 @@ export default function BlogId({ blog, highlightedBody }) {
   const day = blog.createdAt.split('T')[0];
   const time = blog.createdAt.split('T')[1].slice(0, 5);
 
+  const ogpImageUrl = createOgpImage(blog.image.url, blog.title);
+
   return (
-    <Container>
-      <Title />
-      <Main>
-        <Wrapper>
-          {day} {time}
-          <H1>{blog.title}</H1>
-          {blog.category.map((category) => (
-            <Category
-              key={category.id}
-              color={category.color}
-              backgroundColor={category.backgroundColor}
-            >
-              <Link href={`/category/${category.id}`}>{category.name}</Link>
-            </Category>
-          ))}
-          <div
-            style={{ overflowWrap: 'break-word' }}
-            dangerouslySetInnerHTML={{
-              __html: `${highlightedBody}`,
-            }}
-          />
-          <Share>
-            <TwitterShareButton
-              title={blog.title}
-              url={`https://roaris-io.vercel.app/blog/${blog.id}`}
-            >
-              <TwitterIcon size={35} round={true} />
-            </TwitterShareButton>
-          </Share>
-        </Wrapper>
-      </Main>
-    </Container>
+    <>
+      <HeadTemplate
+        pageTitle={`${blog.title} | roaris.io`}
+        pageUrl={`https://roaris-io.vercel.app/blog/${blog.id}`}
+        imgUrl={ogpImageUrl}
+      />
+      <Container>
+        <Title />
+        <Main>
+          <Wrapper>
+            {day} {time}
+            <H1>{blog.title}</H1>
+            {blog.category.map((category) => (
+              <Category
+                key={category.id}
+                color={category.color}
+                backgroundColor={category.backgroundColor}
+              >
+                <Link href={`/category/${category.id}`}>{category.name}</Link>
+              </Category>
+            ))}
+            <div
+              style={{ overflowWrap: 'break-word' }}
+              dangerouslySetInnerHTML={{
+                __html: `${highlightedBody}`,
+              }}
+            />
+            <Share>
+              <TwitterShareButton
+                title={blog.title}
+                url={`https://roaris-io.vercel.app/blog/${blog.id}`}
+              >
+                <TwitterIcon size={35} round={true} />
+              </TwitterShareButton>
+            </Share>
+          </Wrapper>
+        </Main>
+      </Container>
+    </>
   );
 }
 
