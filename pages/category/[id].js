@@ -19,7 +19,7 @@ export default function Home({ blog, category, imgUrl }) {
     <>
       <HeadTemplate
         pageTitle={`${category.name}の記事 | roaris.io`}
-        pageUrl={`https://roaris-io.vercel.app/category/${category.id}`}
+        pageUrl={`${process.env.NEXT_PUBLIC_URL}/category/${category.id}`}
         imgUrl={imgUrl}
         type="website"
         twitterCard="summary"
