@@ -109,6 +109,8 @@ export const getStaticProps = async (context) => {
     $(elm).html(result.value);
     $(elm).addClass('hljs');
   });
+  // リンクに色をつける
+  $('a').css('color', '#0969da');
 
   return {
     props: {
