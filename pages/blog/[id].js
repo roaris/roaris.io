@@ -46,7 +46,7 @@ export default function BlogId({ blog, highlightedBody }) {
     <>
       <HeadTemplate
         pageTitle={`${blog.title} | roaris.io`}
-        pageUrl={`https://roaris-io.vercel.app/blog/${blog.id}`}
+        pageUrl={`${process.env.NEXT_PUBLIC_URL}/blog/${blog.id}`}
         imgUrl={ogpImageUrl}
         type="article"
         twitterCard="summary_large_image"
@@ -75,7 +75,7 @@ export default function BlogId({ blog, highlightedBody }) {
             <Share>
               <TwitterShareButton
                 title={blog.title}
-                url={`https://roaris-io.vercel.app/blog/${blog.id}`}
+                url={`${process.env.NEXT_PUBLIC_URL}/blog/${blog.id}`}
               >
                 <TwitterIcon size={35} round={true} />
               </TwitterShareButton>
