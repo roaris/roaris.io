@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { client } from '../../libs/client';
 import { createOgpImage } from '../../libs/ogp';
+import { parseTime } from '../../libs/parseTime';
 import { Category } from '../../styles/Category';
 import { Title } from '../../components/Title';
 import { HeadTemplate } from '../../components/HeadTemplate';
@@ -37,9 +38,7 @@ export default function BlogId({ blog, highlightedBody }) {
     text-align: right;
   `;
 
-  const day = blog.createdAt.split('T')[0];
-  const time = blog.createdAt.split('T')[1].slice(0, 5);
-
+  const publishedAt = parseTime(blog.publishedAt);
   const ogpImageUrl = createOgpImage(blog.image.url, blog.title);
 
   return (
@@ -55,7 +54,7 @@ export default function BlogId({ blog, highlightedBody }) {
         <Title />
         <Main>
           <Wrapper>
-            {day} {time}
+            {publishedAt}
             <H1>{blog.title}</H1>
             {blog.category.map((category) => (
               <Category

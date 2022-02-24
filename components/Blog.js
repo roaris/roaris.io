@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { parseTime } from '../libs/parseTime';
 import { Category } from '../styles/Category';
 import styled from 'styled-components';
 
@@ -18,12 +19,11 @@ export const Blog = ({ blog }) => {
     margin-bottom: 10px;
   `;
 
-  const day = blog.createdAt.split('T')[0];
-  const time = blog.createdAt.split('T')[1].slice(0, 5);
+  const publishedAt = parseTime(blog.publishedAt);
 
   return (
     <Wrapper>
-      {day} {time}
+      {publishedAt}
       <Link href={`/blog/${blog.id}`}>
         <Title>{blog.title}</Title>
       </Link>
