@@ -94,7 +94,13 @@ export const getStaticPaths = async () => {
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  const data = await client.get({ endpoint: 'blog', contentId: id });
+  // api/previewからリダイレクトした時は、draftKeyが取得できる
+  const draftKey = context.previewData?.draftKey;
+  const data = await client.get({
+    endpoint: 'blog',
+    contentId: id,
+    queries: { draftKey: draftKey },
+  });
 
   // シンタックスハイライト
   const $ = cheerio.load(data.body);
