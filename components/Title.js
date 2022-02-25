@@ -3,28 +3,28 @@ import styled from 'styled-components';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TwitterIcon from '@mui/icons-material/Twitter';
 
+const H1 = styled.h1`
+  display: inline;
+  margin-right: 10px;
+  vertical-align: middle;
+`;
+
+const Main = styled.div`
+  margin-bottom: 10px;
+`;
+
+const Img = styled.img`
+  border-radius: 50%;
+  height: 45px;
+  vertical-align: middle;
+  width: 45px;
+`;
+
+const Icon = styled.a`
+  margin-right: 8px;
+`;
+
 export const Title = () => {
-  const H1 = styled.h1`
-    display: inline;
-    margin-right: 10px;
-    vertical-align: middle;
-  `;
-
-  const Main = styled.div`
-    margin-bottom: 10px;
-  `;
-
-  const Img = styled.img`
-    border-radius: 50%;
-    height: 45px;
-    vertical-align: middle;
-    width: 45px;
-  `;
-
-  const Icon = styled.a`
-    margin-right: 8px;
-  `;
-
   return (
     <>
       <Main>

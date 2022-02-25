@@ -4,17 +4,17 @@ import { Title } from '../../components/Title';
 import { HeadTemplate } from '../../components/HeadTemplate';
 import styled from 'styled-components';
 
+const Container = styled.div`
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 20px;
+`;
+
+const Main = styled.div`
+  width: 100%;
+`;
+
 export default function Home({ blog, category, imgUrl }) {
-  const Container = styled.div`
-    margin: 0 auto;
-    max-width: 700px;
-    padding: 20px;
-  `;
-
-  const Main = styled.div`
-    width: 100%;
-  `;
-
   return (
     <>
       <HeadTemplate

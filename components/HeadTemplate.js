@@ -58,8 +58,8 @@ export const HeadTemplate = ({
       <meta name="msapplication-config" content="/favicons/browserconfig.xml" />
       <meta name="theme-color" content="#ffffff" />
       <title>{pageTitle}</title>
-      <meta charset="utf-8" />
-      <meta name="viewport" content="device-width,initial-scale=1" />
+      <meta charSet="utf-8" />
+      <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       <meta property="og:site_name" content="roaris.io" />
       <meta property="og:title" content={pageTitle} />
       <meta property="og:url" content={pageUrl} />

@@ -3,22 +3,22 @@ import { parseTime } from '../libs/parseTime';
 import { Category } from '../styles/Category';
 import styled from 'styled-components';
 
+const Wrapper = styled.div`
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 0.5em;
+  margin-bottom: 30px;
+  padding: 10px;
+`;
+
+const Title = styled.div`
+  cursor: pointer;
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
 export const Blog = ({ blog }) => {
-  const Wrapper = styled.div`
-    background-color: #ffffff;
-    border: 1px solid #ffffff;
-    border-radius: 0.5em;
-    margin-bottom: 30px;
-    padding: 10px;
-  `;
-
-  const Title = styled.div`
-    cursor: pointer;
-    font-size: 23px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  `;
-
   const publishedAt = parseTime(blog.publishedAt);
 
   return (

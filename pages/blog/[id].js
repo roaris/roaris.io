@@ -11,33 +11,33 @@ import hljs from 'highlight.js';
 import 'highlight.js/styles/github-dark.css';
 import { TwitterIcon, TwitterShareButton } from 'react-share';
 
+const Container = styled.div`
+  margin: 0 auto;
+  max-width: 700px;
+  padding: 20px;
+`;
+
+const Main = styled.div`
+  width: 100%;
+`;
+
+const Wrapper = styled.div`
+  background-color: #ffffff;
+  border: 1px solid #ffffff;
+  border-radius: 0.5em;
+  margin-top: 20px;
+  padding: 10px;
+`;
+
+const H1 = styled.h1`
+  margin-top: 0px;
+`;
+
+const Share = styled.div`
+  text-align: right;
+`;
+
 export default function BlogId({ blog, highlightedBody }) {
-  const Container = styled.div`
-    margin: 0 auto;
-    max-width: 700px;
-    padding: 20px;
-  `;
-
-  const Main = styled.div`
-    width: 100%;
-  `;
-
-  const Wrapper = styled.div`
-    background-color: #ffffff;
-    border: 1px solid #ffffff;
-    border-radius: 0.5em;
-    margin-top: 20px;
-    padding: 10px;
-  `;
-
-  const H1 = styled.h1`
-    margin-top: 0px;
-  `;
-
-  const Share = styled.div`
-    text-align: right;
-  `;
-
   const publishedAt = parseTime(blog.publishedAt);
   const ogpImageUrl = createOgpImage(blog.image.url, blog.title);
 
