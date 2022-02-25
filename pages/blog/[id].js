@@ -13,7 +13,7 @@ import { TwitterIcon, TwitterShareButton } from 'react-share';
 
 const Container = styled.div`
   margin: 0 auto;
-  max-width: 700px;
+  max-width: 900px;
   padding: 20px;
 `;
 
