@@ -117,6 +117,8 @@ export const getStaticProps = async (context) => {
   });
   // リンクに色をつける
   $('a').css('color', '#0969da');
+  // 画像サイズを横幅に合わせる
+  $('img').css('width', '100%');
 
   return {
     props: {
