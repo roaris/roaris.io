@@ -101,9 +101,15 @@ export const getStaticProps = async (context) => {
     contentId: id,
     queries: { draftKey: draftKey },
   });
+  // リッチエディタとHTMLを連結する
+  const body = data.body.reduce(function (previous, current) {
+    if (current.richEditor) previous += current.richEditor;
+    if (current.html) previous += current.html;
+    return previous;
+  }, '');
 
   // シンタックスハイライト
-  const $ = cheerio.load(data.body);
+  const $ = cheerio.load(body);
   $('code', 'p').css('background-color', '#fff');
   $('code', 'p').css('border', '1px solid #ddd');
   $('code', 'p').css('border-radius', '3px');
