@@ -121,6 +121,13 @@ export const getStaticProps = async (context) => {
   $('img').css('width', '700px');
   $('img').css('max-width', '100%');
   $('img').wrap($('<div style="text-align: center">'));
+  // h2,h3をアレンジ
+  $('h2').css('color', '#1e90ff');
+  $('h2').css('border-bottom', 'solid');
+  $('h2').css('border-color', '#1e90ff');
+  $('h2').css('border-width', '5px');
+  $('h3').css('padding-left', '5px');
+  $('h3').css('border-left', '4px solid #1e90ff');
 
   return {
     props: {
