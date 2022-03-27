@@ -116,6 +116,12 @@ export const getStaticProps = async (context) => {
   $('code', 'p').css('color', '#ff357f');
   $('code', 'p').css('margin', '0 2px');
   $('code', 'p').css('padding', '2px 4px');
+  $('code', 'li').css('background-color', '#fff');
+  $('code', 'li').css('border', '1px solid #ddd');
+  $('code', 'li').css('border-radius', '3px');
+  $('code', 'li').css('color', '#ff357f');
+  $('code', 'li').css('margin', '0 2px');
+  $('code', 'li').css('padding', '2px 4px');
   $('code', 'pre').each((_, elm) => {
     const result = hljs.highlightAuto($(elm).text());
     $(elm).html(result.value);
